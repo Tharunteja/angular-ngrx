@@ -1,0 +1,10 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.products{
+    border: 2px solid lightskyblue;
+    padding: 10px;
+    margin:10px;
+    flex: 25%;
+}

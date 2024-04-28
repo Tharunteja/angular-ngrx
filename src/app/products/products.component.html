@@ -1,0 +1,9 @@
+<p>products works!</p>
+<div class="product-container">
+    <div class="products" *ngFor="let product of products">
+        <label>{{product.title}}</label>
+        <button (click)="goToProductDetails(product.id)">Details</button>
+    </div>
+</div>
+
+
