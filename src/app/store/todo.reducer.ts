@@ -1,12 +1,12 @@
 import { createReducer, on } from "@ngrx/store";
 import { ITodo, ITodos } from "../models/todo.model";
-import { addTodoItem } from "./todo.action";
+import { addTodoItem, loadTodos, loadTodoSuccess } from "./todo.action";
 
 const initialState: ITodos = {
     todos: [{
         id: 1,
-        title: 'call ADT',
-        status: 'pending'
+        todo: 'call ADT',
+        completed: true
     }],
     isLoading: false
 };
@@ -21,9 +21,20 @@ export const getTodosReducer = createReducer(
         //if there is any logic
         return {
             ...state,
-            todos: [...state.todos, action.todoItem]
         }
     }),
+    on(loadTodos, (state, action) => {
+        return {
+            ...state,
+        }
+    }),
+    on(loadTodoSuccess, (state, action: any) => {
+        console.log('todos from reducer',action.todos);
+        return {
+          ...state,
+          todos: [...state.todos, ...action.todos]
+        };
+      }),
     // on(deleteTodoItem, (state, action) => {
     //     return {
     //         ...state,

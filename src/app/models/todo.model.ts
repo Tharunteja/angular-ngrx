@@ -1,7 +1,7 @@
 export interface ITodo {
     id: number;
-    title: string;
-    status: string;
+    todo: string;
+    completed: boolean;
 }
 export interface ITodos {
     isLoading?: boolean;

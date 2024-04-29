@@ -1,10 +1,10 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ITodo, ITodos } from '../models/todo.model';
 import { Observable } from 'rxjs';
 import { todoSelector } from '../store/todo.selector';
-import { addTodoItem } from '../store/todo.action';
+import { addTodoItem, loadTodos } from '../store/todo.action';
 
 @Component({
   selector: 'app-todo',
@@ -13,26 +13,29 @@ import { addTodoItem } from '../store/todo.action';
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css'
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit {
   // todos$: ITodo[] = []; //if we want to subscribe the observable 
-  todos$: Observable<ITodo[]>;// In case if we don't want  subscribe the observable
+  todos$: Observable<ITodo[]>// In case if we don't want  subscribe the observable
 
   //should provide which reducer we need 
   constructor(private store: Store<{myTodos: ITodos}>){
-    // this.store.select(todoSelector).subscribe((res:ITodo[]) => {
-    //   this.todos$ = res
-    // });
+    // // this.store.select(todoSelector).subscribe((res:ITodo[]) => {
+    // //   this.todos$ = res
+    // // });
 
-    //select method enables data from store and returns an observable
+    // //select method enables data from store and returns an observable
     this.todos$ = this.store.select(todoSelector);
-    console.log(this.todos$);
+  }
+
+  ngOnInit(): void {
+    this.store.dispatch(loadTodos());
   }
 
   addNewTodo(){
     const newTodoItem: ITodo = {
       id: 2,
-      title: 'Kumudu',
-      status: 'pending'
+      todo: 'Kumudu',
+      completed: false
     }
     //dispatching action
     this.store.dispatch(addTodoItem({ todoItem:newTodoItem }));
