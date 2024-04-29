@@ -1,10 +1,10 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { ITodo, ITodos } from '../models/todo.model';
+import { ITodo, ITodos } from '../../models/todo.model';
 import { Observable } from 'rxjs';
-import { todoSelector } from '../store/todo.selector';
-import { addTodoItem, loadTodos } from '../store/todo.action';
+import { todoSelector } from '../../store/todo.selector';
+import { addTodoItem, loadTodos } from '../../store/todo.action';
 
 @Component({
   selector: 'app-todo',

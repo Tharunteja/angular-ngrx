@@ -4,7 +4,6 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, of, switchMap } from "rxjs";
 
 import { loadTodoSuccess, loadTodos } from "./todo.action";
-import { ITodos } from "../models/todo.model";
 
 @Injectable()
 export class TodosEffects {
@@ -15,7 +14,10 @@ export class TodosEffects {
             ofType(loadTodos),
             switchMap(() =>
                 this.http.get('https://dummyjson.com/todos').pipe(
-                    map((data: any) => loadTodoSuccess({todos: data.todos}))
+                    map((data: any) => {
+                        console.log(data)
+                        return loadTodoSuccess({todos: data.todos})
+                    })
                     //catchError(error => of(loadTodoFailure({data: error})))
                 )
             )
