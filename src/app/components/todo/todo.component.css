@@ -1,0 +1,9 @@
+.todos-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.todos {
+    flex: 25%;
+    padding: 15px;
+}

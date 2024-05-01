@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ITodo, ITodos } from '../../models/todo.model';
 import { Observable } from 'rxjs';
-import { todoSelector } from '../../store/todo.selector';
+import { todosSelector } from '../../store/todo.selector';
 import { addTodoItem, loadTodos } from '../../store/todo.action';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -18,13 +19,13 @@ export class TodoComponent implements OnInit {
   todos$: Observable<ITodo[]>// In case if we don't want  subscribe the observable
 
   //should provide which reducer we need 
-  constructor(private store: Store<{myTodos: ITodos}>){
-    // // this.store.select(todoSelector).subscribe((res:ITodo[]) => {
+  constructor(private store: Store<{myTodos: ITodos}>, private router: Router){
+    // // this.store.select(todosSelector).subscribe((res:ITodo[]) => {
     // //   this.todos$ = res
     // // });
 
     // //select method enables data from store and returns an observable
-    this.todos$ = this.store.select(todoSelector);
+    this.todos$ = this.store.select(todosSelector);
   }
 
   ngOnInit(): void {
@@ -40,6 +41,11 @@ export class TodoComponent implements OnInit {
     //dispatching action
     this.store.dispatch(addTodoItem({ todoItem:newTodoItem }));
     console.log('adding todo');
+  }
+
+  onGotoTodo(value: number){
+    console.log(value);
+    this.router.navigate(['/todos', value]);
   }
 
   

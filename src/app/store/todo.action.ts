@@ -10,12 +10,22 @@ export const addTodoItem = createAction(
 );
 
 export const loadTodos = createAction(
+    '[Todo] Load Todos',
+);
+
+export const loadTodosSuccess = createAction(
+    '[Todo] Load Todos Success',
+    props<{todos: ITodos}>()
+);
+
+export const loadTodo = createAction(
     '[Todo] Load Todo',
+    props<{id: number}>()
 );
 
 export const loadTodoSuccess = createAction(
     '[Todo] Load Todo Success',
-    props<{todos: ITodos}>()
+    props<{todo: ITodo}>()
 );
 
 

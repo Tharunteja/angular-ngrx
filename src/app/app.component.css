@@ -1,3 +1,6 @@
-.navigation:hover {
-    cursor: pointer;
+.navigation {
+    margin: 25px;
+    &:hover {
+        cursor: pointer;
+    }
 }

@@ -2,10 +2,14 @@
 
 <!-- no subscription. async pipe subscribes to observable and 
 automatically unsubscribes when the compoennt is destroyed -->
-<div *ngFor="let todo of (todos$ | async)"> 
- <!-- with subscription
-<div *ngFor="let todo of todos$">  -->
-    <label> Title: {{todo.todo}}</label>
+<div class="todos-container">
+    <div *ngFor="let todo of (todos$ | async)" class="todos"> 
+    <!-- with subscription
+    <div *ngFor="let todo of todos$">  -->
+        <label> Title: {{todo.todo}}</label>
+        <button (click)="onGotoTodo(todo.id)">Details</button>
+        
+    </div>
 </div>
 
 

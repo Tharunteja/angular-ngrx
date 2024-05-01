@@ -6,4 +6,5 @@ export interface ITodo {
 export interface ITodos {
     isLoading?: boolean;
     todos: ITodo[];
+    todo: ITodo;
 }
