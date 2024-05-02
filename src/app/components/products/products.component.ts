@@ -18,12 +18,18 @@ export class ProductsComponent implements OnInit{
   filterValue: string = '';
   products: any;
   filterProducts: any;
+  searchText: string = '';
+  items: any;
+  filterItems: any;
+
   ngOnInit(): void {
     this.productService.getProducts().subscribe((response: any) => {
       this.products = response.products;
       this.filterProducts = [...this.products];
+      this.items = this.products.map((product:any) => product.title);
     })
   }
+
 
   //NOTE: add (keyup) in template
   // onUserChange(){
@@ -33,6 +39,15 @@ export class ProductsComponent implements OnInit{
   //   console.log(this.products);
   //   return this.products;
   // }
+  
+  onAutoComplete() {
+    
+    this.filterItems = this.items.filter((item: any) => item.toLocaleLowerCase().startsWith(this.searchText));
+    if(this.searchText === ''){
+      this.filterItems = [];
+    }
+    return this.filterItems;
+  }
 
   goToProductDetails(value:number){
     this.router.navigate(['/product', value]);

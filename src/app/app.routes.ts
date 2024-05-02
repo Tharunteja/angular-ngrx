@@ -5,6 +5,7 @@ import { ProductComponent } from './components/products/product/product.componen
 import { TodoComponent } from './components/todo/todo.component';
 import { ShareComponent } from './components/share/share.component';
 import { UniqueTodoComponent } from './components/todo/unique-todo/unique-todo.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
 
 export const routes: Routes = [{
     path: '', component: HomeComponent
@@ -18,4 +19,6 @@ export const routes: Routes = [{
     path: 'todos/:id', component: UniqueTodoComponent
 },{
     path: 'shared', component: ShareComponent
+},{
+    path: 'users', component: UserFormComponent
 }];

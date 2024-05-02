@@ -1,11 +1,25 @@
 <p>products works!</p>
-<input name="product" [(ngModel)]="filterValue" type="text"/>
-<p> Entered text: {{filterValue}}</p>
-<div class="product-container">
-    <div class="products" *ngFor="let product of filterProducts | filterByName:filterValue">
-        <label>{{product.title}}</label>
-        <button (click)="goToProductDetails(product.id)">Details</button>
+
+<div class="auto-search">
+    <input name="autosearch" [(ngModel)]="searchText" type="text" (keyup)="onAutoComplete()"/>
+
+    <ul *ngFor="let item of filterItems">
+        <li> {{item}}</li>
+    </ul>
+
+</div>
+
+<div class="products">
+    <input name="product" [(ngModel)]="filterValue" type="text"/>
+    <p> Entered text: {{filterValue}}</p>
+    <div class="product-container">
+        <div class="products" *ngFor="let product of filterProducts | filterByName:filterValue">
+            <label>{{product.title}}</label>
+            <button (click)="goToProductDetails(product.id)">Details</button>
+        </div>
     </div>
 </div>
+
+
 
 
