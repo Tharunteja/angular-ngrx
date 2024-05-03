@@ -15,7 +15,7 @@ const initialState: ITodos = {
         completed: true
     }
 };
-//createReducer take at least take on argument and multiple on. 
+//createReducer take at least one argument and multiple on. 
 //After creating it we should add it to the store module or provideStore in standalone with a name. 
 //By using that name we can access to our reducer
 export const getTodosReducer = createReducer( 
@@ -41,18 +41,6 @@ export const getTodosReducer = createReducer(
         };
       }),
 
-      on(loadTodo, (state, action) => {
-        return {
-            ...state,
-        }
-    }),
-    on(loadTodoSuccess, (state, action: any) => {
-        console.log('todo from reducer',action.todo);
-        return {
-          ...state,
-          todo: {...action.todo}
-        };
-      }),
     // on(deleteTodoItem, (state, action) => {
     //     return {
     //         ...state,
