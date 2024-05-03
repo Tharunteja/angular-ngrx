@@ -1,1 +1,12 @@
 <p>home works!</p>
+
+<div>
+    <input type="text" name="title" [(ngModel)]="todoTitle"/>
+    <button (click)="onAddTodo()">Add Todo</button>
+</div>
+<div>
+    <div *ngFor="let todo of todos">
+        <input type="checkbox" name="checkbox" [(ngModel)]="todo.completed" (click)="onTodoClick(todo.id, !todo.completed)"/>
+        <label [ngClass]="todo.completed? 'under-line': ''">{{todo.title}}</label>
+    </div>
+</div>
